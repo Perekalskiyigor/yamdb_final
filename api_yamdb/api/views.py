@@ -1,13 +1,6 @@
 import secrets
 import string
 
-from api.permissions import (CommentRewiewPermission, IsAdminUserPermission,
-                             ReadOnly)
-from api.serializer import (CategorySerializer, CommentSerializer,
-                            CreateTokenSerializer, CreateUserSerializer,
-                            GenreSerializer, ReviewSerializer,
-                            TitlesSerializer, UserMeSerializer, UserSerializer)
-from api.viewsets import ListOrCreateOrDeleteViewsSet
 from django.core.mail import send_mail
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
@@ -16,7 +9,15 @@ from rest_framework import filters, generics, permissions, status, viewsets
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+
 from reviews.models import Category, Genre, Title, User
+from api.permissions import (CommentRewiewPermission, IsAdminUserPermission,
+                             ReadOnly)
+from api.serializer import (CategorySerializer, CommentSerializer,
+                            CreateTokenSerializer, CreateUserSerializer,
+                            GenreSerializer, ReviewSerializer,
+                            TitlesSerializer, UserMeSerializer, UserSerializer)
+from api.viewsets import ListOrCreateOrDeleteViewsSet
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -69,7 +70,7 @@ class TitlesViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(category__slug=category_slug)
         if name:
             queryset = queryset.filter(name__icontains=name)
-        return queryset  # noqa: R504
+        return queryset
 
 
 class UserMeView(generics.RetrieveUpdateAPIView):
