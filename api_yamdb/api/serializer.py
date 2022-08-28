@@ -8,7 +8,7 @@ from reviews.models import Category, Comment, Genre, Review, Title, User
 class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Category # 55
+        model = Category  # 55
         fields = ('name', 'slug')
 
 
