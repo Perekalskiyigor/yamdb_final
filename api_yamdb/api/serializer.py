@@ -14,7 +14,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class GenreSerializer(serializers.ModelSerializer):
 
-    class Meta:
+    class Meta:  # 22
         model = Genre
         fields = ('name', 'slug')
 
